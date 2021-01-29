@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { getBooksByType } from "./book-search.service";
 
+import { Book, BookList } from "../book-list/BookList";
+
+async function requestBooks(bookTypeToSearch?: string) {
+    if (bookTypeToSearch) {
+        const allBooks = await getBooksByType(bookTypeToSearch);
+        return allBooks
+    }
+}
 
 const BookSearch = () => {
     const [bookType, updateBookType] = useState("");
     const [bookTypeToSearch, updateBookTypeToSearch] = useState("");
-    const [allAvailableBooks, setAllAvailableBooks] = useState([]);
-    async function requestBooks() {
-        if (bookTypeToSearch) {
-            const allBooks = await getBooksByType(bookTypeToSearch);
-            setAllAvailableBooks(allBooks);
-        }
-    }
+    const [allAvailableBooks, setAllAvailableBooks] = useState<Book[]>()
 
     useEffect(() => {
         async function getAllBooks() {
-            await requestBooks();
+            const allBooks = await requestBooks(bookTypeToSearch);
+            setAllAvailableBooks(allBooks)
         }
         getAllBooks();
     }, [bookTypeToSearch]);
@@ -55,12 +58,12 @@ const BookSearch = () => {
                                     </p>
                                 </div>
                             )}
-
+                            {allAvailableBooks && allAvailableBooks.length > 0 && (
+                                <BookList bookList={allAvailableBooks} />
+                            )}
                         </div>
                     </div>
                 </div>
-                {                <pre>{JSON.stringify(allAvailableBooks, null, 4)}</pre>
-                }
             </>
     );
 };
