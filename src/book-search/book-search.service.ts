@@ -1,4 +1,5 @@
 import  fetchUrl from './../shared/fetchUrl/fetchUrl';
+import { bookListAdapter } from './book-adapter';
 
 export async function getBooksByType(type: string) {
     try {
@@ -7,7 +8,7 @@ export async function getBooksByType(type: string) {
             headers: {
                 'content-type': 'application/json',
             }
-        });
+        }).then(bookListAdapter);
     } catch(exception) {
         return [];
 
