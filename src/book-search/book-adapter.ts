@@ -1,4 +1,4 @@
-import { Book } from '../book-list/BookList';
+import { Book } from "../book-card/BookCard";
 
 interface BookListResponse {
   items: BookResponse[],

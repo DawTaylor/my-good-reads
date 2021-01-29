@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getBooksByType } from "./book-search.service";
 
-import { Book, BookList } from "../book-list/BookList";
+import { BookList } from "../book-list/BookList";
+import { Book } from "../book-card/BookCard";
 
 async function requestBooks(bookTypeToSearch?: string) {
     if (bookTypeToSearch) {
