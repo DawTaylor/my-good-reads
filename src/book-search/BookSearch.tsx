@@ -3,6 +3,7 @@ import { getBooksByType } from "./book-search.service";
 
 import { BookList } from "../book-list/BookList";
 import { Book } from "../book-card/BookCard";
+import {  useDebouncedSearch } from "./useDebouncedSearch";
 
 async function requestBooks(bookTypeToSearch?: string) {
     if (bookTypeToSearch) {
@@ -16,6 +17,8 @@ const BookSearch = () => {
     const [bookTypeToSearch, updateBookTypeToSearch] = useState("");
     const [allAvailableBooks, setAllAvailableBooks] = useState<Book[]>()
 
+    const { updateTerm } = useDebouncedSearch(updateBookTypeToSearch)
+
     useEffect(() => {
         async function getAllBooks() {
             const allBooks = await requestBooks(bookTypeToSearch);
@@ -23,6 +26,12 @@ const BookSearch = () => {
         }
         getAllBooks();
     }, [bookTypeToSearch]);
+
+    useEffect(() => {
+        if(!bookType) updateBookTypeToSearch('')
+        updateTerm(bookType)
+    }, [bookType, bookTypeToSearch, updateTerm])
+    
     return (
             <>
                 <div className="book--container">
@@ -59,7 +68,7 @@ const BookSearch = () => {
                                     </p>
                                 </div>
                             )}
-                            {allAvailableBooks && allAvailableBooks.length > 0 && (
+                            {bookType && allAvailableBooks && allAvailableBooks.length > 0 && (
                                 <BookList bookList={allAvailableBooks} />
                             )}
                         </div>
