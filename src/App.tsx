@@ -3,6 +3,7 @@ import './styles/App.scss';
 import BookSearch from './book-search/BookSearch';
 import { Wishlist } from './wishlist/Wishlist';
 import { WishlistContext } from './wishlist/useWishlist';
+import { WishlistModal } from './wishlist/WishlistModal';
 
 function App() {
   return (
@@ -13,9 +14,10 @@ function App() {
           </div>
         </header>
         <WishlistContext.Provider>
-          <main className="main-content">
+          <main>
             <BookSearch/>
             <Wishlist/>
+            <WishlistModal />
           </main>
         </WishlistContext.Provider>
       </div>

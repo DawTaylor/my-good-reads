@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useCallback, useState } from "react"
 import { createContainer } from "unstated-next"
 import { Book } from "../book-card/BookCard"
 
@@ -20,6 +20,9 @@ const getBookCount = (books: { [key: string]: WishlistBook }) => Object.keys(boo
 
 export const useWishList = () => {
   const [wishlist, setWishlist] = useState<Wishlist>(emptyWishlist)
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+
+  const toggleModal = useCallback(() => setIsModalOpen(state => !state), [])
 
   const addToWishlist = (book: WishlistBook) => {
     setWishlist(previousWishlist => { 
@@ -49,7 +52,9 @@ export const useWishList = () => {
   return { 
     wishlist,
     addToWishlist,
-    removeFromWishlist
+    removeFromWishlist,
+    isModalOpen,
+    toggleModal
   }
 }
 
