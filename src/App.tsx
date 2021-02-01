@@ -1,6 +1,8 @@
 import React from 'react';
 import './styles/App.scss';
 import BookSearch from './book-search/BookSearch';
+import { Wishlist } from './wishlist/Wishlist';
+import { WishlistContext } from './wishlist/useWishlist';
 
 function App() {
   return (
@@ -10,10 +12,12 @@ function App() {
             <h1>My Good Reads</h1>
           </div>
         </header>
-        <main>
-          <BookSearch/>
-        </main>
-
+        <WishlistContext.Provider>
+          <main className="main-content">
+            <BookSearch/>
+            <Wishlist/>
+          </main>
+        </WishlistContext.Provider>
       </div>
   );
 }
