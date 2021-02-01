@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import { WishlistContext } from './useWishlist';
+import './Wishlist.scss'
 
 export interface WishtlistBookProps {
   bookId: string
@@ -14,7 +15,9 @@ export const WishlistBookCard: React.FC<WishtlistBookProps> = ({ bookId }) => {
 
   return (
     <div className="wishlist--book" key={book.id}>
-      {book.title}
+      <p>
+        {book.title}
+      </p>
       <button onClick={removeThisFromWishlist}>Remove</button>
     </div>
   )

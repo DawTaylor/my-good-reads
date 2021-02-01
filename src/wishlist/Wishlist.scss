@@ -1,10 +1,10 @@
 @import "../styles/variables.scss";
 
 .wishlist--container {
-  width: 300px;
+  width: 20vw;
 
   .wishlist--header {
-    padding: $spacing-xxs;
+    padding: $spacing-xxs 0;
     margin-bottom: $spacing-xs;
   }
 }
