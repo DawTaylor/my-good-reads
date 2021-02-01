@@ -39,7 +39,6 @@ const BookSearch = () => {
                         <div>
                             <form
                                 onSubmit={(e) => {
-                                    debugger;
                                     e.preventDefault();
                                    updateBookTypeToSearch(bookType)
                                 }}
