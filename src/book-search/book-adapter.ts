@@ -26,12 +26,14 @@ interface BookVolumeImageLinksResponse {
 const bookAdapter = (book: BookResponse): Book | undefined => {
   if (
       !book.id ||
-      !book.volumeInfo.imageLinks.thumbnail ||
+      !book.volumeInfo ||
       !book.volumeInfo.title ||
       !book.volumeInfo.authors ||
       !book.volumeInfo.publisher ||
       !book.volumeInfo.publishedDate ||
-      !book.volumeInfo.description
+      !book.volumeInfo.description ||
+      !book.volumeInfo.imageLinks ||
+      !book.volumeInfo.imageLinks.thumbnail
   ) return
 
   return {
