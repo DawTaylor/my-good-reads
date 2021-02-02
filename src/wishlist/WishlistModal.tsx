@@ -20,7 +20,7 @@ const customStyles = {
 export const WishlistModal = () => {
   const { isModalOpen } = WishlistContext.useContainer()
   return (
-    <Modal isOpen={isModalOpen} style={customStyles}>
+    <Modal isOpen={isModalOpen} style={customStyles} closeTimeoutMS={250}>
       <Wishlist isModal />
     </Modal>
   )
