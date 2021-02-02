@@ -125,9 +125,9 @@ form {
   justify-content: space-around;
   align-items: stretch;
   margin-right: 50px;
-  width: 100vw;
+  width: 100%;
   @media screen and (min-width: $grid-sm) {
-    max-width: 80vw;
+    max-width: 80%;
   }
 }
 
