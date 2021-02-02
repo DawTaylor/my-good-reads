@@ -37,19 +37,14 @@ const BookSearch = () => {
                 <div className="book--container">
                     <div className="search-params">
                         <div>
-                            <form
-                                onSubmit={(e) => {
-                                    e.preventDefault();
-                                   updateBookTypeToSearch(bookType)
-                                }}
-                            >
+                            <form>
                                 <input
                                     className="full-width"
                                     autoFocus
                                     name="gsearch"
                                     type="search"
                                     value={bookType}
-                                    placeholder="Search for books to add to your reading list and press Enter"
+                                    placeholder="Search for books to add to your reading list"
                                     onChange={e => updateBookType(e.target.value)}
                                 />
                             </form>
