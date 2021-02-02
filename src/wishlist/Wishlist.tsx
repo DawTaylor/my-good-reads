@@ -1,10 +1,10 @@
 import React from 'react'
-import { WishlistBook, WishlistContext } from './useWishlist'
+import { WishlistContext } from './useWishlist'
 import './Wishlist.scss'
 import { WishlistBookCard } from './WishlistBookCard'
 
 const renderBook = (bookId: string) => {
-  return <WishlistBookCard bookId={bookId} />
+  return <WishlistBookCard bookId={bookId} key={`wishlist-${bookId}`}/>
 }
 
 export interface WishlistProps {

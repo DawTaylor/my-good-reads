@@ -14,7 +14,7 @@ export const WishlistBookCard: React.FC<WishtlistBookProps> = ({ bookId }) => {
   const removeThisFromWishlist = useCallback(() => removeFromWishlist(book), [book, removeFromWishlist])
 
   return (
-    <div className="wishlist--book" key={book.id}>
+    <div className="wishlist--book">
       <p>
         {book.title}
       </p>
