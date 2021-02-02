@@ -3,8 +3,6 @@ import Modal from 'react-modal'
 import { WishlistContext } from './useWishlist';
 import { Wishlist } from './Wishlist';
 
-Modal.setAppElement('#root');
-
 const customStyles = {
   overlay: {
     zIndex: 101
