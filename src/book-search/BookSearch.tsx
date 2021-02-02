@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getBooksByType } from "./book-search.service";
 
+import loading from '../assets/svg/loading.svg'
+
 import { BookList } from "../book-list/BookList";
 import { Book } from "../book-card/BookCard";
 import {  useDebouncedSearch } from "./useDebouncedSearch";
@@ -16,13 +18,16 @@ const BookSearch = () => {
     const [bookType, updateBookType] = useState("");
     const [bookTypeToSearch, updateBookTypeToSearch] = useState("");
     const [allAvailableBooks, setAllAvailableBooks] = useState<Book[]>()
+    const [isLoading, setIsLoading] = useState(false)
 
     const { updateTerm } = useDebouncedSearch(updateBookTypeToSearch)
 
     useEffect(() => {
+        setIsLoading(true)
         async function getAllBooks() {
             const allBooks = await requestBooks(bookTypeToSearch);
             setAllAvailableBooks(allBooks)
+            setIsLoading(false)
         }
         getAllBooks();
     }, [bookTypeToSearch]);
@@ -60,6 +65,11 @@ const BookSearch = () => {
                                             "Javascript"
                                         </a>
                                     </p>
+                                </div>
+                            )}
+                            {bookType && isLoading && (
+                                <div className="empty">
+                                    <img src={loading} alt="Loading books" />
                                 </div>
                             )}
                             {bookType && allAvailableBooks && allAvailableBooks.length > 0 && (
