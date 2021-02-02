@@ -3,6 +3,12 @@
 .wishlist--container {
   width: 20%;
 
+  @media screen and (min-width: $grid-sm) {
+    position: sticky;
+    top: 95px;
+    align-self: flex-start;
+  }
+
   @media screen and (min-width: $grid-sm) and (max-width: $grid-md) {
     width: 30%;
   }
