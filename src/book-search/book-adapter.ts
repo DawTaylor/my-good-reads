@@ -1,6 +1,6 @@
 import { Book } from "../book-card/BookCard";
 
-interface BookListResponse {
+export interface BookListResponse {
   items: BookResponse[],
   totalItems: number
 }
