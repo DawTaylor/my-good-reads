@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import fetchUrl from './fetchUrl';
 import sinon from 'sinon';
 import assert from 'assert';
@@ -27,26 +26,29 @@ describe('Testing FetchUrl - Wrapper over fetch', () => {
         assert(mockFetch.calledOnce, 'Fn was called once');
         delete global.fetch;
     });
-    it('should resolve with data for valid request', () => {
+    it('should resolve with data for valid request', async () => {
         const mockFetch = sinon.fake.resolves({
             ok: true,
             json: () => res
         });
         // Inject mock fetch into global
         global.fetch = mockFetch;
-        const fetchResponse = fetchUrl('/api/v1/someUrl');
-        expect(fetchResponse).to.eventually.equal(res);
+        const fetchResponse = await fetchUrl('/api/v1/someUrl');
+        expect(fetchResponse).toEqual(res);
         delete global.fetch;
     });
-    it(`should reject with data for fetch status returns ok false`, () => {
+    it(`should reject with data for fetch status returns ok false`, async () => {
         const mockFetch = sinon.fake.resolves({
             ok: false,
             json: () => res
         });
         // Inject mock fetch into global
         global.fetch = mockFetch;
-        const fetchResponse = fetchUrl('/api/v1/someUrl');
-        expect(fetchResponse).to.eventually.be.rejectedWith(res);
+        try {
+            await fetchUrl('/api/v1/someUrl');
+        } catch(err) {
+            expect(err).toEqual(res)
+        }
         delete global.fetch;
     });
 });
